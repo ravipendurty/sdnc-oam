@@ -70,6 +70,20 @@ RUN find /opt/opendaylight -name "*features*.xml" -exec sed -i -e 's|4.0.1|3.1.0
 RUN apk add zip
 RUN find /opt/opendaylight/system/org/ops4j/pax/logging/pax-logging-log4j2 -name 'pax-logging-log4j2*.jar' -exec zip -q -d '{}' org/apache/logging/log4j/core/lookup/JndiLookup.class \;
 
+COPY patches/netconf-api-6.0.6.jar $ODL_HOME/system/org/opendaylight/netconf/netconf-api/6.0.6/
+COPY patches/netconf-client-6.0.6.jar $ODL_HOME/system/org/opendaylight/netconf/netconf-client/6.0.6/
+COPY patches/netconf-client-mdsal-6.0.6.jar $ODL_HOME/system/org/opendaylight/netconf/netconf-client-mdsal/6.0.6/
+COPY patches/netconf-common-mdsal-6.0.6.jar $ODL_HOME/system/org/opendaylight/netconf/netconf-common-mdsal/6.0.6/
+COPY patches/netconf-nb-6.0.6.jar $ODL_HOME/system/org/opendaylight/netconf/netconf-nb/6.0.6/
+COPY patches/netconf-netty-util-6.0.6.jar $ODL_HOME/system/org/opendaylight/netconf/netconf-netty-util/6.0.6/
+COPY patches/netconf-server-6.0.6.jar $ODL_HOME/system/org/opendaylight/netconf/netconf-server/6.0.6/
+COPY patches/netconf-server-mdsal-6.0.6.jar $ODL_HOME/system/org/opendaylight/netconf/netconf-server-mdsal/6.0.6/
+COPY patches/netconf-topology-6.0.6.jar $ODL_HOME/system/org/opendaylight/netconf/netconf-topology/6.0.6/
+COPY patches/restconf-nb-6.0.6.jar $ODL_HOME/system/org/opendaylight/netconf/restconf-nb/6.0.6/
+COPY patches/rfc6241-6.0.6.jar $ODL_HOME/system/org/opendaylight/netconf/model/rfc6241/6.0.6/
+COPY patches/rfc6470-6.0.6.jar $ODL_HOME/system/org/opendaylight/netconf/model/rfc6470/6.0.6/
+COPY patches/rfc6243-6.0.6.jar $ODL_HOME/system/org/opendaylight/netconf/model/rfc6243/6.0.6/
+COPY patches/rfc8526-6.0.6.jar $ODL_HOME/system/org/opendaylight/netconf/model/rfc8526/6.0.6/
 
 # Changing ownership and permission of /opt
 RUN chown -R odl:odl /opt && chmod -R 755 /opt

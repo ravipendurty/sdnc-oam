@@ -47,14 +47,15 @@ jobs:
         run: docker images
         
       - name: Log in to GHCR
-        run: echo "${{ secrets.GH_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${GITHUB_REPOSITORY_OWNER} --password-stdin
 
       - name: Push Docker Images to GHCR
         env:
           OWNER: ${{ github.repository_owner }}
         run: |
           IMAGES=(
-            onap/ccsdk-alpine-j11-image:1.7-SNAPSHOT-latest
+            onap/sdnc-image:3.0.3-SNAPSHOT-latest
+            onap/sdnc-web-image:3.0.3-SNAPSHOT-latest 
           )
           for IMAGE in "${IMAGES[@]}"; do
             echo "$IMAGE"

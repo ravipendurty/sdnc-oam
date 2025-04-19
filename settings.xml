@@ -172,7 +172,7 @@
 		<server>
 			<id>github</id>
 			<username>ravipendurty</username>
-			<password>${env.GH_PAT}</password>
+			<password>${env.GITHUB_TOKEN}</password>
 		</server>
 	</servers>
 </settings>
